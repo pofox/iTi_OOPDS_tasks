@@ -55,7 +55,7 @@ void factp(int* n)
 int Pow(int a, int b)
 {
 	if (b == 1) return a;
-	return a * Pow(a, b-1);
+	return a * Pow(a, b-1); // without * is a/(1/Pow(a,b-1)) jk >> bitshift
 }
 void Powp(int* a, int b)
 {
