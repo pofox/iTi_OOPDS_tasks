@@ -104,11 +104,94 @@ void PrintVector(std::vector<int> numbers)
 	std::cout << "\n";
 }
 
+int BinSearch(std::vector<int> numbers, int num)
+{
+	int high = numbers.size() - 1;
+
+	for (int low = 0; low <= high;)
+	{
+		int mid = (high + low) / 2;
+		if (num == numbers[high]) return high;
+		if (num == numbers[mid]) return mid;
+		if (num < numbers[mid]) high = mid - 1;
+		else low = mid + 1;
+	}
+	return -1;
+}
+
+struct Node
+{
+	int num;
+	char name[10];
+	int ssn;
+	Node* next;
+	void printNode()
+	{
+		std::cout << "Name : " << name << " | " << "Number : " << num << "\n";
+	}
+};
+
+struct LinkedList
+{
+	Node* first = NULL;
+	Node* lastInserted = NULL;
+	void InitList(Node firstNode)
+	{
+		first = &firstNode;
+		lastInserted = first;
+	}
+	void PushBack(Node node)
+	{
+		if (first == NULL)
+		{
+			first = &node;
+			lastInserted = &node;
+			return;
+		}f
+
+
+		lastInserted = &node;
+		/*Node* i = first;
+		while (i->next != NULL)
+		{
+			i = i->next;
+		}
+		i->next = &node;*/
+	}
+	void PrintList()
+	{
+		Node* current = first;
+		while (current != NULL)
+		{
+			current->printNode();
+			current = current->next
+		}
+	}
+};
+
 int main()
 {
-	std::vector<int> arr = { 4,3,6,2,6,7,3,9,-2 };
-	PrintVector(arr);
-	arr = MergeSort(arr);
-	PrintVector(arr);
+	//std::vector<int> arr = { 4,3,6,2,6,7,3,9,-2 };
+	//PrintVector(arr);
+	//arr = MergeSort(arr);
+	//PrintVector(arr);
+	//std::cout << BinSearch(arr, -2) << "\n";
+
+	Node nod;
+	nod.name = "ssss";
+	nod.num = 5;
+	nod.ssn = 30;
+
+	Node m;
+	m.name = "cvcv";
+	m.num = 4;
+	m.ssn = 40;
+
+	LinkedList list;
+
+	list.PushBack(nod);
+	list.PushBack(m);
+
+	list.PrintList();
 }
 
