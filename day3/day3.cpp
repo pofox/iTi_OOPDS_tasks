@@ -16,16 +16,18 @@ struct Node
 
 struct DLinkedList
 {
-	Node* first=nullptr;
-	Node* last=nullptr;
+	Node* first = nullptr;
+	Node* last = nullptr;
 	int size = 0;
 	void add(Node* node)
 	{
 		size++;
+		node->next = nullptr;
 		if (first == nullptr)
 		{
 			first = node;
 			last = node;
+			node->prev = nullptr;
 			return;
 		}
 		node->prev = last;
@@ -35,8 +37,8 @@ struct DLinkedList
 	void removeat(int idx)
 	{
 		size--;
-		Node* node=first;
-		while (idx >= 0)
+		Node* node = first;
+		while (idx > 0)
 		{
 			node = node->next;
 			idx--;
@@ -61,19 +63,19 @@ struct DLinkedList
 	void replaceAt(Node* newnode, int idx)
 	{
 		Node* node = first;
-		while (idx >= 0)
+		while (idx > 0)
 		{
 			node = node->next;
 			idx--;
 		}
 		if (node->prev != first->prev) (node->prev)->next = newnode;
-		if (node->prev == first->prev) 
-		{ 
+		if (node->prev == first->prev)
+		{
 			first = newnode;
 			newnode->next = node->next;
 		}
 		if (node->next != last->next) (node->next)->prev = newnode;
-		if (node->next == last->next) 
+		if (node->next == last->next)
 		{
 			last = newnode;
 			newnode->prev = node->prev;
@@ -91,18 +93,18 @@ struct DLinkedList
 	}
 	DLinkedList MergeSort(DLinkedList d)
 	{
+		DLinkedList out;
 		if (d.size == 2)
 		{
-			if (d.first->ID > ((d.first)->next)->ID)
+			if (d.first->ID > d.last->ID)
 			{
-				Node* node=d.first;
-				replaceAt((d.first)->next, 0);
-				replaceAt(node, 1);
-				return d;
+				out.add(d.last);
+				out.add(d.first);
+				return out;
 			}
 			return d;
 		}
-		if (size == 1) return d;
+		if (d.size == 1) return d;
 
 		DLinkedList l1;
 		DLinkedList l2;
@@ -119,37 +121,36 @@ struct DLinkedList
 			node = node->next;
 		}
 
+		int i = 0;
 		l1 = MergeSort(l1);
 		l2 = MergeSort(l2);
 
-		int i=0;
 		Node* j = l1.first;
 		Node* k = l2.first;
-		for (; i < d.size && j->next != l1.last && k->next != l2.last; i++)
+		for (; i < d.size && j != l1.last->next && k != l2.last->next; i++)
 		{
 			if (j->ID < k->ID)
 			{
-				d.replaceAt(j, i);
+				out.add(j);
 				j = j->next;
 			}
 			else
 			{
-				d.replaceAt(k, i);
+				out.add(k);
 				k = k->next;
 			}
 		}
-		while (j != l1.last)
+		while (j != l1.last->next)
 		{
-			d.replaceAt(j,i);
-			i++;
+			out.add(j);
 			j = j->next;
 		}
-		while (k != l2.last)
+		while (k != l2.last->next)
 		{
-			d.replaceAt(k, i);
-			i++;
+			out.add(k);
 			k = k->next;
 		}
+		return out;
 	}
 };
 
@@ -165,7 +166,7 @@ int main()
 	list.add(&b);
 	list.add(&c);
 	list.printall();
-	list.MergeSort();
+	list = list.MergeSort(list);
 	list.printall();
 }
 
