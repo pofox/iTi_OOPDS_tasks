@@ -46,6 +46,7 @@ std::vector<int> MergeSort(std::vector<int> numbers)
 			Swap(&numbers, 0, 1);
 			return numbers;
 		}
+		return numbers;
 	}
 	if (size == 1) return numbers;
 
