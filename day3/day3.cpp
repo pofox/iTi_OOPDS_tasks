@@ -147,7 +147,7 @@ struct LinkedList
 			first = &node;
 			lastInserted = &node;
 			return;
-		}f
+		}
 
 
 		lastInserted = &node;
