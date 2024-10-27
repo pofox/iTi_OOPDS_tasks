@@ -26,3 +26,8 @@ void PrintVector(std::vector<int> numbers)
 		std::cout << numbers[i] << "\t";
 	}std::cout << "\n";
 }
+int main()
+{
+    std::cout << "Hello World!\n";
+}
+
