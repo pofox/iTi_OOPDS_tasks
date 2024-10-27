@@ -105,7 +105,7 @@ void PrintVector(std::vector<int> numbers)
 
 int main()
 {
-	std::vector<int> arr = { 4,3,6,2,6,7,3,9 };
+	std::vector<int> arr = { 4,3,6,2,6,7,3,9,-2 };
 	PrintVector(arr);
 	arr = MergeSort(arr);
 	PrintVector(arr);
