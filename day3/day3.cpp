@@ -10,9 +10,9 @@ struct Node
 	Node* prev = nullptr;
 	void printemployee()
 	{
-		std::cout<<"Name : "<< name<<"ID : "<< ID<<"\n";
+		std::cout << "Name : " << name << "ID : " << ID << "\n";
 	}
-}
+};
 
 struct DLinkedList
 {
@@ -150,7 +150,7 @@ struct DLinkedList
 			k = k->next;
 		}
 	}
-}
+};
 
 int main()
 {
