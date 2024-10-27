@@ -36,7 +36,7 @@ std::vector<int> InsetionSort(std::vector<int> numbers)
 	return numbers;
 }
 
-std::vector<int> MergSort(std::vector<int> numbers)
+std::vector<int> MergeSort(std::vector<int> numbers)
 {
 	int size = numbers.size();
 	if (size == 2)
@@ -49,20 +49,49 @@ std::vector<int> MergSort(std::vector<int> numbers)
 	}
 	if (size == 1) return numbers;
 
-	int divider = size / 2;
-	std::vector vec1;
-	std::vector vec2;
+	std::vector<int> vec1;
+	std::vector<int> vec2;
 
-	for (int i = 0; i < divider; i++)
+	for (int i = 0; i < size / 2; i++)
 	{
 		vec1.push_back(numbers[i]);
 	}
-	for (int i = divider; i < size; i++)
+	for (int i = size / 2; i < size; i++)
 	{
 		vec2.push_back(numbers[i]);
 	}
-	vec1 = MergSort(vec1);
-	vec2 = MergSort(vec2);
+
+	vec1 = MergeSort(vec1);
+	vec2 = MergeSort(vec2);
+
+	int i, j, k;
+	i = j = k = 0;
+	for(; i < size && j < size / 2 && k < size - (int)(size / 2); i++)
+	{
+		if (vec1[j] < vec2[k])
+		{
+			numbers[i] = vec1[j];
+			j++;
+		}
+		else
+		{
+			numbers[i] = vec2[k];
+			k++;
+		}
+	}
+	while (j < size / 2)
+	{
+		numbers[i] = vec1[j];
+		i++;
+		j++;
+	}
+	while (k < size - (int)(size / 2))
+	{
+		numbers[i] = vec2[k];
+		i++;
+		k++;
+	}
+	return numbers;
 }
 
 void PrintVector(std::vector<int> numbers)
@@ -78,7 +107,7 @@ int main()
 {
 	std::vector<int> arr = { 4,3,6,2,6,7,3,9 };
 	PrintVector(arr);
-	InsetionSort(&arr);
+	arr = MergeSort(arr);
 	PrintVector(arr);
 }
 
