@@ -10,19 +10,19 @@ struct Node
 	Node* prev = nullptr;
 	void printemployee()
 	{
-		std::cout << "Name : " << name << "ID : " << ID << "\n";
+		std::cout << "Name : " << name << " ID : " << ID << "\n";
 	}
 };
 
 struct DLinkedList
 {
-	Node* first=NULL;
-	Node* last=NULL;
+	Node* first=nullptr;
+	Node* last=nullptr;
 	int size = 0;
 	void add(Node* node)
 	{
 		size++;
-		if (first == NULL)
+		if (first == nullptr)
 		{
 			first = node;
 			last = node;
@@ -41,10 +41,10 @@ struct DLinkedList
 			node = node->next;
 			idx--;
 		}
-		if (node->prev != NULL) (node->prev)->next = node->next;
-		if (node->prev == NULL) first = node->next;
-		if (node->next != NULL) (node->next)->prev = node->prev;
-		if (node->next == NULL) last = node->prev;
+		if (node->prev != first->prev) (node->prev)->next = node->next;
+		if (node->prev == first->prev) first = node->next;
+		if (node->next != last->next) (node->next)->prev = node->prev;
+		if (node->next == last->next) last = node->prev;
 	}
 	int find(int id)
 	{
@@ -52,7 +52,7 @@ struct DLinkedList
 		int idx = 0;
 		while (id != node->ID)
 		{
-			if (node->next == NULL) return -1;
+			if (node->next == last->next) return -1;
 			node = node->next;
 			idx++;
 		}
@@ -66,14 +66,14 @@ struct DLinkedList
 			node = node->next;
 			idx--;
 		}
-		if (node->prev != NULL) (node->prev)->next = newnode;
-		if (node->prev == NULL) 
+		if (node->prev != first->prev) (node->prev)->next = newnode;
+		if (node->prev == first->prev) 
 		{ 
 			first = newnode;
 			newnode->next = node->next;
 		}
-		if (node->next != NULL) (node->next)->prev = newnode;
-		if (node->next == NULL) 
+		if (node->next != last->next) (node->next)->prev = newnode;
+		if (node->next == last->next) 
 		{
 			last = newnode;
 			newnode->prev = node->prev;
@@ -82,10 +82,12 @@ struct DLinkedList
 	void printall()
 	{
 		Node* node = first;
-		while (node->next != NULL)
+		while (node->next != last->next)
 		{
 			node->printemployee();
+			node = node->next;
 		}
+		node->printemployee();
 	}
 	DLinkedList MergeSort(DLinkedList d)
 	{
@@ -123,7 +125,7 @@ struct DLinkedList
 		int i=0;
 		Node* j = l1.first;
 		Node* k = l2.first;
-		for (; i < d.size && j->next != NULL && k->next != NULL; i++)
+		for (; i < d.size && j->next != l1.last && k->next != l2.last; i++)
 		{
 			if (j->ID < k->ID)
 			{
@@ -136,13 +138,13 @@ struct DLinkedList
 				k = k->next;
 			}
 		}
-		while (j != NULL)
+		while (j != l1.last)
 		{
 			d.replaceAt(j,i);
 			i++;
 			j = j->next;
 		}
-		while (k != NULL)
+		while (k != l2.last)
 		{
 			d.replaceAt(k, i);
 			i++;
@@ -162,6 +164,8 @@ int main()
 	list.add(&a);
 	list.add(&b);
 	list.add(&c);
+	list.printall();
+	list.MergeSort();
 	list.printall();
 }
 
