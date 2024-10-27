@@ -12,7 +12,7 @@ struct Node
 	{
 		std::cout<<"Name : "<< name<<"ID : "<< ID<<"\n";
 	}
-}
+};
 
 struct DLinkedList
 {
@@ -41,9 +41,9 @@ struct DLinkedList
 			node = node->next;
 			idx--;
 		}
-		if (node->prev != NULL) *(node->prev)->next = node->next;
+		if (node->prev != NULL) (node->prev)->next = node->next;
 		if (node->prev == NULL) first = node->next;
-		if (node->next != NULL) *(node->next)->prev = node->prev;
+		if (node->next != NULL) (node->next)->prev = node->prev;
 		if (node->next == NULL) last = node->prev;
 	}
 	int find(int id)
@@ -66,13 +66,13 @@ struct DLinkedList
 			node = node->next;
 			idx--;
 		}
-		if (node->prev != NULL) *(node->prev)->next = newnode;
+		if (node->prev != NULL) (node->prev)->next = newnode;
 		if (node->prev == NULL) 
 		{ 
 			first = newnode;
 			newnode->next = node->next;
 		}
-		if (node->next != NULL) *(node->next)->prev = newnode;
+		if (node->next != NULL) (node->next)->prev = newnode;
 		if (node->next == NULL) 
 		{
 			last = newnode;
@@ -91,10 +91,10 @@ struct DLinkedList
 	{
 		if (d.size == 2)
 		{
-			if (d.first->ID > (*(d.first)->next).ID)
+			if (d.first->ID > ((d.first)->next)->ID)
 			{
 				Node* node=d.first;
-				replaceAt(*(d.first)->next, 0);
+				replaceAt((d.first)->next, 0);
 				replaceAt(node, 1);
 				return d;
 			}
@@ -113,17 +113,16 @@ struct DLinkedList
 		}
 		for (int i = d.size / 2; i < d.size; i++)
 		{
-			l2.add(d);
+			l2.add(node);
 			node = node->next;
 		}
 
 		l1 = MergeSort(l1);
 		l2 = MergeSort(l2);
 
-		int i;
+		int i=0;
 		Node* j = l1.first;
 		Node* k = l2.first;
-		i = j = k = 0;
 		for (; i < d.size && j->next != NULL && k->next != NULL; i++)
 		{
 			if (j->ID < k->ID)
@@ -139,7 +138,7 @@ struct DLinkedList
 		}
 		while (j != NULL)
 		{
-			d.replaceAt(j,i)
+			d.replaceAt(j,i);
 			i++;
 			j = j->next;
 		}
@@ -150,7 +149,7 @@ struct DLinkedList
 			k = k->next;
 		}
 	}
-}
+};
 
 int main()
 {
