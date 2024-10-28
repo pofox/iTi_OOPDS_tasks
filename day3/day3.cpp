@@ -22,12 +22,10 @@ struct DLinkedList
 	void add(Node* node)
 	{
 		size++;
-		node->next = nullptr;
 		if (first == nullptr)
 		{
 			first = node;
 			last = node;
-			node->prev = nullptr;
 			return;
 		}
 		node->prev = last;
@@ -83,13 +81,14 @@ struct DLinkedList
 	}
 	void printall()
 	{
-		Node* node = first;
-		while (node->next != last->next)
+		Node* nod = first;
+		int i=0;
+		while (i<size)
 		{
-			node->printemployee();
-			node = node->next;
+			nod->printemployee();
+			nod = nod->next;
+			i++;
 		}
-		node->printemployee();
 	}
 	DLinkedList MergeSort(DLinkedList d)
 	{
@@ -110,8 +109,10 @@ struct DLinkedList
 		DLinkedList l2;
 
 		Node* node = d.first;
+		//Node* node2 = nullptr;
 		for (int i = 0; i < d.size / 2; i++)
 		{
+			//node2 = node->next;
 			l1.add(node);
 			node = node->next;
 		}
@@ -121,34 +122,39 @@ struct DLinkedList
 			node = node->next;
 		}
 
-		int i = 0;
+		int i,idx1,idx2;
 		l1 = MergeSort(l1);
 		l2 = MergeSort(l2);
+		i=idx1=idx2=0;
 
 		Node* j = l1.first;
 		Node* k = l2.first;
-		for (; i < d.size && j != l1.last->next && k != l2.last->next; i++)
+		for (; i < d.size && idx1 < l1.size && idx2 < l2.size; i++)
 		{
 			if (j->ID < k->ID)
 			{
 				out.add(j);
 				j = j->next;
+				idx1++;
 			}
 			else
 			{
 				out.add(k);
 				k = k->next;
+				idx2++;
 			}
 		}
-		while (j != l1.last->next)
+		while (idx1 < l1.size)
 		{
 			out.add(j);
 			j = j->next;
+			idx1++;
 		}
-		while (k != l2.last->next)
+		while (idx2 < l2.size)
 		{
 			out.add(k);
 			k = k->next;
+			idx2++;
 		}
 		return out;
 	}
@@ -158,13 +164,15 @@ int main()
 {
 	DLinkedList list;
 
-	Node a = { "mohamed",1 };
-	Node b = { "khaled",3 };
-	Node c = { "Amr",2 };
+	Node a = { "mohamed",2 };
+	Node b = { "khaled",4 };
+	Node c = { "Amr",1 };
+	Node d = { "Ali",3 };
 
 	list.add(&a);
 	list.add(&b);
 	list.add(&c);
+	list.add(&d);
 	list.printall();
 	list = list.MergeSort(list);
 	list.printall();
