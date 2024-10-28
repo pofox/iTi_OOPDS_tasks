@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+using namespace std;
 struct Node
 {
 	std::string name;
@@ -19,19 +19,21 @@ struct DLinkedList
 	Node* first = nullptr;
 	Node* last = nullptr;
 	int size = 0;
-	void add(Node* node)
-	{
-		size++;
-		if (first == nullptr)
-		{
-			first = node;
-			last = node;
-			return;
-		}
-		node->prev = last;
-		last->next = node;
-		last = node;
-	}
+	void add(const std::string& name, int ID)
+{
+    Node* node = new Node{name, ID};
+    size++;
+    if (first == nullptr)
+    {
+        first = node;
+        last = node;
+        return;
+    }
+    node->prev = last;
+    last->next = node;
+    last = node;
+}
+
 	void removeat(int idx)
 	{
 		size--;
@@ -97,8 +99,8 @@ struct DLinkedList
 		{
 			if (d.first->ID > d.last->ID)
 			{
-				out.add(d.last);
-				out.add(d.first);
+				out.add(d.last->name,d.last->ID);
+				out.add(d.first->name,d.first->ID);
 				return out;
 			}
 			return d;
@@ -113,12 +115,12 @@ struct DLinkedList
 		for (int i = 0; i < d.size / 2; i++)
 		{
 			//node2 = node->next;
-			l1.add(node);
+			l1.add(node->name,node->ID);
 			node = node->next;
 		}
 		for (int i = d.size / 2; i < d.size; i++)
 		{
-			l2.add(node);
+			l2.add(node->name,node->ID);
 			node = node->next;
 		}
 
@@ -133,30 +135,40 @@ struct DLinkedList
 		{
 			if (j->ID < k->ID)
 			{
-				out.add(j);
+				out.add(j->name,j->ID);
 				j = j->next;
 				idx1++;
 			}
 			else
 			{
-				out.add(k);
+				out.add(k->name,k->ID);
 				k = k->next;
 				idx2++;
 			}
 		}
 		while (idx1 < l1.size)
 		{
-			out.add(j);
+			out.add(j->name,j->ID);
 			j = j->next;
 			idx1++;
 		}
 		while (idx2 < l2.size)
 		{
-			out.add(k);
+			out.add(k->name,k->ID);
 			k = k->next;
 			idx2++;
 		}
 		return out;
+	}
+	void deleteDLL()
+	{
+		Node* current = first;
+		while (current != nullptr)
+		{
+			Node* nextNode = current->next;
+			delete current;
+		    current = nextNode;
+		}
 	}
 };
 
@@ -169,12 +181,13 @@ int main()
 	Node c = { "Amr",1 };
 	Node d = { "Ali",3 };
 
-	list.add(&a);
-	list.add(&b);
-	list.add(&c);
-	list.add(&d);
+	list.add(a.name,a.ID);
+	list.add(b.name,b.ID);
+	list.add(c.name,c.ID);
+	list.add(d.name,d.ID);
 	list.printall();
 	list = list.MergeSort(list);
 	list.printall();
+	list.deleteDLL();
 }
 
