@@ -3,8 +3,8 @@
 
 struct student 
 {
-    string name;
-    string address;
+    std::string name;
+    std::string address;
     student* next = NULL;
 };
  
