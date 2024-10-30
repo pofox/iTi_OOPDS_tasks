@@ -1,22 +1,22 @@
 #include <iostream>
 #include <string.h>
 
-struct node 
+struct student 
 {
     string name;
     string address;
-    node* next = NULL;
+    student* next = NULL;
 };
  
  
 struct queue {
-    node* first = NULL;
-    node* last = NULL;
+    student* first = NULL;
+    student* last = NULL;
 
-    int Find(node* n)
+    int Find(student* n)
     {
       if (first == NULL) return -1;
-      node* temp=first;
+      student* temp=first;
       int idx = 0;
       while(temp != NULL)
       {
@@ -25,40 +25,40 @@ struct queue {
       }
       return -1;
     }
-    void Enqueue(node* newNode) 
+    void Enqueue(student* newstudent) 
     {
         if (first == NULL && last == NULL)
         {
-            first = last = newNode;
+            first = last = newstudent;
             return;
         }
-        last->next = newNode;
-        last = newNode;
+        last->next = newstudent;
+        last = newstudent;
     }
-    void EnqueueAtIndex(node* newNode,int idx) 
+    void EnqueueAtIndex(student* newstudent,int idx) 
     {
         idx--;
         if (first == NULL && last == NULL)
         {
-            first = last = newNode;
+            first = last = newstudent;
             return;
         }
-        node* n = first;
+        student* n = first;
         while (idx != 0)
         {
           n=n->next;
           idx--;
         }
-        newNode->next = n->next;
-        n->next = newNode;
+        newstudent->next = n->next;
+        n->next = newstudent;
     }
-    node* Dequeue() 
+    student* Dequeue() 
     {
         if (last == NULL) {
             std::cout << " the queue is empty !" << "\n";
             return NULL;
         }
-        node* temp;
+        student* temp;
         temp = first;
         first = first->next;
         return temp;
