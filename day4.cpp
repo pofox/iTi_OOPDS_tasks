@@ -69,5 +69,22 @@ struct queue {
 
 int main()
 {
-  return 0;
+    student s1,s2,s3,s4,s5;
+    s1.name = "a";
+    s2.name = "b";
+    s3.name = "c";
+    s4.name = "d";
+    s5.name = "e";
+    queue q;
+    q.Enqueue(&s1);
+    q.Enqueue(&s2);
+    q.Enqueue(&s3);
+    q.EnqueueAtIndex(&s4,1);
+    q.EnqueueAtIndex(&s5,3);
+    for(int i=0;i<5;i++)
+    {
+        student* temp=q.Dequeue();
+        std::cout<<"name : "<<temp->name<<"\n";
+    }
+    return 0;
 }
