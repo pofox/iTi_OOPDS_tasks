@@ -128,6 +128,8 @@ struct BinaryTree {
                     newroot->right->parent = newroot->parent;
                     return;
                 }
+                if (s->ID < newroot->ID) newroot->parent->left = NULL;
+                else newroot->parent->right = NULL;
                 newroot->parent = NULL;
                 return;
             }
@@ -135,6 +137,7 @@ struct BinaryTree {
             {
                 if (newroot->left == NULL) return;
                 newroot = newroot->left;
+                continue;
             }
             if (newroot->right == NULL) return;
             newroot = newroot->right;
