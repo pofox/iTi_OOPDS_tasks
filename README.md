@@ -4,5 +4,5 @@
 
 Student tree that have the folloing
 - Insert Student
-- Finf Student (by ID)
+- Find Student (by ID)
 - Bonus: Remove Student (by Student)
