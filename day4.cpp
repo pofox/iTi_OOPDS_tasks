@@ -29,6 +29,7 @@ struct BinaryTree {
                 if (newroot->left == NULL)
                 {
                     newroot->left = s;
+                    s->parent = newroot;
                     searching = false;
                     continue;
                 }
@@ -37,6 +38,7 @@ struct BinaryTree {
             if (newroot->right == NULL)
             {
                 newroot->right = s;
+                s->parent = newroot;
                 searching = false;
                 continue;
             }
@@ -148,7 +150,7 @@ int main()
     s1.name = "a";
     s2.name = "b";
     s3.name = "c";
-    s3.name = "d";
+    s4.name = "d";
     s1.ID = 1;
     s2.ID = 2;
     s3.ID = 3;
