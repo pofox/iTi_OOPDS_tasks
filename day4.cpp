@@ -30,6 +30,7 @@ struct BinaryTree {
                 {
                     newroot->left = s;
                     searching = false;
+                    continue;
                 }
                 newroot = newroot->left;
             }
@@ -37,6 +38,7 @@ struct BinaryTree {
             {
                 newroot->right = s;
                 searching = false;
+                continue;
             }
             newroot = newroot->right;
         }
