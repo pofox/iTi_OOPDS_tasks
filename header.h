@@ -8,11 +8,11 @@ public:
     ComplexNumber(float a,float b);
     ComplexNumber(float a);
     ComplexNumber();
-    ComplexNumber(ComplexNumber& z);
+    ComplexNumber(const ComplexNumber& z);
     void SetRe(float a);
     void SetIm(float b);
-    float GetRe();
-    float GetIm();
+    float GetRe() const;
+    float GetIm() const;
     ~ComplexNumber();
 };
 
