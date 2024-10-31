@@ -1,10 +1,19 @@
 #pragma once
 class ComplexNumber
 {
-public:
     float x;
     float y;
-    ComplexNumber(float x,float y);
+public:
+    static int count;
+    ComplexNumber(float a,float b);
+    ComplexNumber(float a);
+    ComplexNumber();
+    ComplexNumber(ComplexNumber& z);
+    void SetRe(float a);
+    void SetIm(float b);
+    float GetRe();
+    float GetIm();
+    ~ComplexNumber();
 };
 
 ComplexNumber Add(ComplexNumber z1,ComplexNumber z2);
@@ -12,3 +21,5 @@ ComplexNumber Add(ComplexNumber z1,ComplexNumber z2);
 ComplexNumber Sub(ComplexNumber z1,ComplexNumber z2);
 
 ComplexNumber Mul(ComplexNumber z1,ComplexNumber z2);
+
+void display(ComplexNumber z1);
