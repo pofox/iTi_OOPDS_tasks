@@ -1,8 +1,7 @@
-#include <iostream>
 #include "header.h"
 
-void ComplexNumber(float x,float y)
+ComplexNumber::ComplexNumber(float a,float b)
 {
-    this->x = x;
-    this->y = y;
+    x = a;
+    y = b;
 }
