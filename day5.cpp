@@ -1,52 +1,71 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 //#include <Windows.h>
-#include <string>
+//#include <string>
 #include "header.h"
+
+int ComplexNumber::count = 0;
 
 ComplexNumber Add(ComplexNumber z1,ComplexNumber z2)
 {
-    ComplexNumber out(0,0);
-    out.x = z1.x + z2.x;
-    out.y = z1.y + z2.y;
+    ComplexNumber out;
+    out.SetRe(z1.GetRe() + z2.GetRe());
+    out.SetIm(z1.GetIm() + z2.GetIm());
     return out;
 }
 
 ComplexNumber Sub(ComplexNumber z1,ComplexNumber z2)
 {
-    ComplexNumber out(0,0);
-    out.x = z1.x - z2.x;
-    out.y = z1.y - z2.y;
+    ComplexNumber out;
+    out.SetRe(z1.GetRe() - z2.GetRe());
+    out.SetIm(z1.GetIm() - z2.GetIm());
     return out;
 }
 
 ComplexNumber Mul(ComplexNumber z1,ComplexNumber z2)
 {
-    ComplexNumber out(0,0);
-    out.x = z1.x * z2.x - z1.y * z2.y;
-    out.y = z1.x * z2.y + z1.y * z2.x;
+    ComplexNumber out;
+    out.SetRe(z1.GetRe() * z2.GetRe() - z1.GetIm() * z2.GetIm());
+    out.SetIm(z1.GetRe() * z2.GetIm() + z1.GetIm() * z2.GetRe());
     return out;
+}
+
+void display(ComplexNumber z)
+{
+	std::cout<<z.GetRe();
+	if (z.GetIm()>=0) std::cout<<"+";
+    std::cout<<z.GetIm()<<"i\n";
 }
 
 void CompNum()
 {
-    ComplexNumber z1(1,2);
-	ComplexNumber z2(3,4);
-	ComplexNumber result(0,0);
-    std::cout<<"z1 = "<<z1.x<<"+i"<<z1.y<<"\n";
-    std::cout<<"z2 = "<<z2.x<<"+i"<<z2.y<<"\n";
+    ComplexNumber z1;
+	z1 = ComplexNumber(1);
+	std::cout<<"count : "<<ComplexNumber::count<<"\n";
+	ComplexNumber z2;
+	z2 = ComplexNumber(3,4);
+	std::cout<<"count : "<<ComplexNumber::count<<"\n";
+	ComplexNumber result;
+	std::cout<<"count : "<<ComplexNumber::count<<"\n";
+    std::cout<<"z1 = ";
+	display(z1);
+	std::cout<<"\n";
+    std::cout<<"z2 = ";
+	display(z2);
+	std::cout<<"\n";
     result = Add(z1,z2);
-    std::cout<<"z1+z2 = "<<result.x;
-	if (result.y>0) std::cout<<"+";
-    std::cout<<result.y<<"i\n";
+    std::cout<<"z1+z2 = ";
+	display(result);
+    std::cout<<"\n";
     result = Sub(z1,z2);
-    std::cout<<"z1-z2 = "<<result.x;
-	if (result.y>0) std::cout<<"+";
-    std::cout<<result.y<<"i\n";
+    std::cout<<"z1-z2 = ";
+	display(result);
+    std::cout<<"\n";
     result = Mul(z1,z2);
-    std::cout<<"z1*z2 = "<<result.x;
-	if (result.y>0) std::cout<<"+";
-    std::cout<<result.y<<"i\n";
+    std::cout<<"z1*z2 = ";
+	display(result);
+    std::cout<<"\n";
+	std::cout<<"count : "<<ComplexNumber::count<<"\n";
 }
 
 
