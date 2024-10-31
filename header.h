@@ -1,4 +1,31 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <Windows.h>
+#include <conio.h>
+#include <fstream>
+#include <vector>
+struct pos
+{
+	int x;
+	int y;
+};
+
+class game
+{
+	pos playerpos;
+public:
+	std::vector<std::vector<char>> maze;
+	void gameloop();
+	void updateplayerpos(pos p);
+};
+
+pos findPlayer(game g);
+void setCursorPosition(int x, int y);
+void fileToVec(game g);
+void printMaze(game g);
+
+/*--------------------------------------------------------------*/
 class ComplexNumber
 {
     float x;
