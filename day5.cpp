@@ -1,7 +1,4 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-//#include <Windows.h>
-//#include <string>
 #include "header.h"
 
 int ComplexNumber::count = 0;
@@ -73,6 +70,8 @@ void CompNum()
 int main()
 {
 	char choise,ch;
+	game g;
+
 	while (true)
 	{
 		std::cout << "Choose one of the following programes\na. Complex Numbers.\nb. tallest and shortest word.\nc. treasure game.\nd. exit.\ne. cls\nf. ASCII of a character\n";
@@ -86,12 +85,12 @@ int main()
 			//TandS();
 			break;
 		case 'c':
-			//tgame();
+			g.gameloop();
 			break;
 		case 'd':
 			return 0;
 		case 'e':
-			//Windows("cls");
+			Windows("cls");
 			break;
 		case 'f':
 			//ascii();
@@ -101,4 +100,27 @@ int main()
 		}
 		std::cout << "----------------------------------------------------\n";
 	}
+}
+
+void setCursorPosition(int x, int y)
+{
+	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	std::cout.flush();
+	COORD coord = { (SHORT)x, (SHORT)y };
+	SetConsoleCursorPosition(hOut, coord);
+}
+
+// player is '@'
+pos findPlayer(game g)
+{
+	int i, j;
+	for (i = 0; i < g.maze.size(); i++) {
+		for (j = 0; j < g.maze[i].size(); j++) {
+			if (g.maze[i][j] == '@')
+			{
+				return { j,i };
+			}
+		}
+	}
+
 }
