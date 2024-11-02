@@ -39,11 +39,8 @@ public:
 	}
 	void operator=(const ComplexNumber& right)
 	{
-
 		x = right.x;
 		y = right.y;
-		//auto v = ComplexNumber(x + right.x, y + right.y);
-		//return v;
 	}
 	operator float()
 	{
