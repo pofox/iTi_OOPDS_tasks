@@ -2,7 +2,7 @@
 
 Overload the (==,!=,+,-,=) operators and one type of casting operators for the class ComplexNumber
 
-## Challeng 2
+## Challenge 2
 - Implement the four types of Relations in classes of your choice
   - Association
   - Aggregation
