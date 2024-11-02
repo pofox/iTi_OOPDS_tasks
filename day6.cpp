@@ -19,8 +19,8 @@ class Creature {
 public:
 	Position position;          //composition
 	int health;
-	void TakeDamage(int a=1) {
-		health-=a;
+	void TakeDamage(int a = 1) {
+		health -= a;
 	}
 };
 
@@ -28,7 +28,7 @@ class npc : public Creature {   //inharetance
 public:
 	std::string dialog;
 	void Interact() {
-		std::cout << dialog<<"\n";
+		std::cout << dialog << "\n";
 	}
 };
 
@@ -63,16 +63,16 @@ void C2() {
 	enemy e;
 	p.health = e.health = n1.health = 100;
 	n1.dialog = "Hello there";
-	std::cout << "player\'s health is " << p.health<<"\n";
-	std::cout << "npc\'s health is " << p.health<<"\n";
-	std::cout << "enemy\'s health is " << p.health<<"\n";
+	std::cout << "player\'s health is " << p.health << "\n";
+	std::cout << "npc\'s health is " << p.health << "\n";
+	std::cout << "enemy\'s health is " << p.health << "\n";
 	n1.Interact();
 	p.TakeDamage();
 	e.TakeDamage();
 	n1.TakeDamage();
-	std::cout << "player\'s health is " << p.health<<"\n";
-	std::cout << "npc\'s health is " << p.health<<"\n";
-	std::cout << "enemy\'s health is " << p.health<<"\n";
+	std::cout << "player\'s health is " << p.health << "\n";
+	std::cout << "npc\'s health is " << p.health << "\n";
+	std::cout << "enemy\'s health is " << p.health << "\n";
 }
 
 
@@ -80,7 +80,7 @@ void C2() {
 class ComplexNumber {
 public:
 	float x, y;
-	ComplexNumber(float xval,float yval) :
+	ComplexNumber(float xval, float yval) :
 		x(xval),
 		y(yval)
 	{}
@@ -125,7 +125,7 @@ public:
 	}
 	ComplexNumber operator*(ComplexNumber& right)
 	{
-		return ComplexNumber((x * right.x) - (y * right.y) , y * right.x + x * right.y);
+		return ComplexNumber((x * right.x) - (y * right.y), y * right.x + x * right.y);
 	}
 	bool operator==(ComplexNumber& right)
 	{
@@ -142,7 +142,7 @@ public:
 	}
 	operator float()
 	{
-		return x*x - y*y;
+		return x * x - y * y;
 	}
 };
 
@@ -158,13 +158,14 @@ void comp()
 	result = ++z1;
 	std::cout << "z1 = " << z1.x << "+" << z1.y << "i\n";
 	std::cout << "++z1 = " << result.x << "+" << result.y << "i\n";
-	result = z2++;
+	result = z2--;
 	std::cout << "z2 = " << z2.x << "+" << z2.y << "i\n";
-	std::cout << "z2++ = " << result.x << "+" << result.y << "i\n";
-	result = ++z2;
+	std::cout << "z2-- = " << result.x << "+" << result.y << "i\n";
+	result = --z2;
 	std::cout << "z2 = " << z2.x << "+" << z2.y << "i\n";
-	std::cout << "++z2 = " << result.x << "+" << result.y << "i\n";
+	std::cout << "--z2 = " << result.x << "+" << result.y << "i\n";
 	std::cout << "z2 = " << z2.x << "+" << z2.y << "i\n";
+	result = z1 + z2;
 	std::cout << "z1 + z2 = " << result.x << "+" << result.y << "i\n";
 	result = (z2 - z1);
 	std::cout << "z2 - z1 = " << result.x << "+" << result.y << "i\n";
