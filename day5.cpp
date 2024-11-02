@@ -74,7 +74,7 @@ int main()
 
 	while (true)
 	{
-		std::cout << "Choose one of the following programes\na. Complex Numbers.\nb. tallest and shortest word.\nc. treasure game.\nd. exit.\ne. cls\nf. ASCII of a character\n";
+		std::cout << "Choose one of the following programes\na. Complex Numbers.\nb. .\nc. .\nd. exit.\ne. cls\nf. .\n";
 		std::cin >> choise;
 		switch (choise)
 		{
@@ -90,7 +90,7 @@ int main()
 		case 'd':
 			return 0;
 		case 'e':
-			Windows("cls");
+			system("cls");
 			break;
 		case 'f':
 			//ascii();
