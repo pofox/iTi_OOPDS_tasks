@@ -51,9 +51,8 @@ public:
 	}
 };
 
-int main()
+void comp()
 {
-	char choise, ch;
 	ComplexNumber z1 = ComplexNumber(1, 2);
 	ComplexNumber z2 = ComplexNumber(5, 6);
 	ComplexNumber result = z1 + z2;
@@ -67,13 +66,19 @@ int main()
 	std::cout << "|z1| = " << z1 << "\n";
 	std::cout << "(z1 == z2) = " << (z1 == z2) << "\n";
 	std::cout << "(z1 != z2) = " << (z1 != z2) << "\n";
+}
+
+int main()
+{
+	char choise, ch;
 	while (true)
 	{
-		std::cout << "Choose one of the following programes\na. .\nb. .\nc. .\nd. exit.\ne. cls\nf. .\n";
+		std::cout << "Choose one of the following programes\na. Complex Numbers.\nb. .\nc. .\nd. exit.\ne. cls\nf. .\n";
 		std::cin >> choise;
 		switch (choise)
 		{
 		case 'a':
+			comp();
 			break;
 		case 'b':
 			//TandS();
