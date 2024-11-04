@@ -27,7 +27,7 @@ public:
 
 class Triangle : public GeometricShape {
 public:
-	float base,hight;
+	float base, hight;
 	float Area()
 		override
 	{
@@ -77,6 +77,18 @@ void D7()
 	std::cout << "The Area of the triangle is " << Area(&t) << "\n";
 	std::cout << "The Area of the rectangle is " << Area(&r) << "\n";
 	std::cout << "The Area of the square is " << Area(&s) << "\n";
+	std::vector<GeometricShape*> v;
+	float ave = 0;
+	v.push_back(&c);
+	v.push_back(&t);
+	v.push_back(&r);
+	v.push_back(&s);
+	for (GeometricShape* g : v)
+	{
+		ave += g->Area();
+	}
+	ave /= v.size();
+	std::cout << "The Average Area of the shapes is " << ave << "\n";
 }
 
 int main()
